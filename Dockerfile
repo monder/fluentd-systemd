@@ -1,9 +1,8 @@
 FROM centos:7
 
-RUN yum -y install gcc-c++ make ruby-devel && yum clean all
-RUN gem install fluentd fluent-plugin-systemd fluent-plugin-elasticsearch
+RUN yum -y install gcc-c++ make ruby-devel net-tools curl && yum clean all
+RUN gem install fluentd fluent-plugin-systemd fluent-plugin-cloudwatch-logs fluent-plugin-rewrite-tag-filter
 
-ADD fluentd.conf /etc/fluentd.conf
 ADD run.sh /fluentd
 
-CMD /fluentd -c /etc/fluentd.conf
+CMD /fluentd

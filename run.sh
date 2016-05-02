@@ -1,3 +1,3 @@
 #!/bin/sh
-sed -i "/hosts ##HOSTS##/c \ \ hosts $ES_HOSTS" /etc/fluentd.conf
-fluentd -c /etc/fluentd.conf
+curl -o /etc/fluentd.conf $CONFIG_URL
+exec fluentd -c /etc/fluentd.conf
